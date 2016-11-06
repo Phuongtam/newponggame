@@ -16,7 +16,6 @@
  *  Version: 0.5
  */
 
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
