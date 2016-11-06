@@ -280,13 +280,13 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 				playing = true;
 			}
 		} else if (playing) {
-			if (e.getKeyCode() == KeyEvent.VK_UP) {
+			if (e.getKeyCode() == KeyEvent.VK_W) {
 				upPressed = true;
-			} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-				downPressed = true;
-			} else if (e.getKeyCode() == KeyEvent.VK_W) {
-				wPressed = true;
 			} else if (e.getKeyCode() == KeyEvent.VK_S) {
+				downPressed = true;
+			} else if (e.getKeyCode() == KeyEvent.VK_UP) {
+				wPressed = true;
+			} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 				sPressed = true;
 			}
 		} else if (gameOver && e.getKeyCode() == KeyEvent.VK_SPACE) {
@@ -302,13 +302,13 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	public void keyReleased(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_UP) {
+		if (e.getKeyCode() == KeyEvent.VK_W) {
 			upPressed = false;
-		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			downPressed = false;
-		} else if (e.getKeyCode() == KeyEvent.VK_W) {
-			wPressed = false;
 		} else if (e.getKeyCode() == KeyEvent.VK_S) {
+			downPressed = false;
+		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
+			wPressed = false;
+		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			sPressed = false;
 		}
 	}
