@@ -184,7 +184,8 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 
 					// If the ball hitting the paddle, it will bounce back
 					// FIXME Something wrong here
-					ballDeltaX *= 1;
+					ballDeltaX *= -1;
+					ballDeltaY *= -1;
 				}
 			}
 
@@ -296,6 +297,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 			ballX = 250;
 			ballY = 250;
 			playerOneScore = 0;
+			playerTwoScore = 0;
 		}
 	}
 
@@ -307,7 +309,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 		} else if (e.getKeyCode() == KeyEvent.VK_W) {
 			wPressed = false;
 		} else if (e.getKeyCode() == KeyEvent.VK_S) {
-			wPressed = false;
+			sPressed = false;
 		}
 	}
 
