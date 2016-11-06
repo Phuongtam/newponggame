@@ -15,7 +15,7 @@
  *  
  *  Version: 0.5
  */
-
+package vn.vanlanguni.ponggame;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
