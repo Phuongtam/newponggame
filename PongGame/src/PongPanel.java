@@ -223,6 +223,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 
 			// draw dashed line down center
 			for (int lineY = 0; lineY < getHeight(); lineY += 50) {
+				g.setColor(Color.GREEN);
 				g.drawLine(250, lineY, 250, lineY + 25);
 			}
 
@@ -265,6 +266,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 			// Draw Restart message
 			g.setFont(new Font(Font.DIALOG, Font.BOLD, 18));
 			// TODO Draw a restart message
+			g.drawString("Press 'SpaceBar' to restart.", 175, 400);
 		}
 	}
 
