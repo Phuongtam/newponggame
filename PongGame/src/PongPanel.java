@@ -62,7 +62,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 	private int playerOneHeight = 50;
 
 	/** Player 2's paddle: position and size */
-	private int playerTwoX = 465;
+	private int playerTwoX = 475;
 	private int playerTwoY = 250;
 	private int playerTwoWidth = 10;
 	private int playerTwoHeight = 60;
@@ -218,7 +218,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 
 			// set the coordinate limit
 			int playerOneRight = playerOneX + playerOneWidth;
-			int playerTwoLeft = playerTwoX;
+			int playerTwoLeft = playerTwoX - 1;
 
 			// draw dashed line down center
 			for (int lineY = 0; lineY < getHeight(); lineY += 50) {
