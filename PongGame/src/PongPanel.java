@@ -184,7 +184,8 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 
 					// If the ball hitting the paddle, it will bounce back
 					// FIXME Something wrong here
-					ballDeltaX *= 1;
+					ballDeltaX *= -1;
+					ballDeltaY *= -1;
 				}
 			}
 
