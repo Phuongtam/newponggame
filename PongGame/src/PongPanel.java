@@ -16,7 +16,6 @@
  *  Version: 0.5
  */
 
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -185,8 +184,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 
 					// If the ball hitting the paddle, it will bounce back
 					// FIXME Something wrong here
-					ballDeltaX *= -1;
-					ballDeltaY *= -1;
+					ballDeltaX *= 1;
 				}
 			}
 
@@ -298,7 +296,6 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 			ballX = 250;
 			ballY = 250;
 			playerOneScore = 0;
-			playerTwoScore = 0;
 		}
 	}
 
