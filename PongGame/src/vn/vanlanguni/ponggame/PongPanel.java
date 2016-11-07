@@ -208,11 +208,13 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 			/* Show welcome screen */
 
 			// Draw game title and start message
+			g.setColor(Color.BLUE);
 			g.setFont(new Font(Font.DIALOG, Font.BOLD, 36));
 			g.drawString("Pong Game", 130, 100);
 
 			// FIXME Wellcome message below show smaller than game title
-			g.drawString("Press 'P' to play.", 175, 400);
+			g.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
+			g.drawString("Press 'P' to play.", 115, 400);
 		} else if (playing) {
 
 			/* Game is playing */
@@ -269,7 +271,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 			// Draw Restart message
 			g.setFont(new Font(Font.DIALOG, Font.BOLD, 18));
 			// TODO Draw a restart message
-			g.drawString("Press 'SpaceBar' to restart.", 175, 400);
+			g.drawString("Press 'SpaceBar' to restart.", 135, 400);
 		}
 	}
 
@@ -278,7 +280,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 
 	public void keyPressed(KeyEvent e) {
 		if (showTitleScreen) {
-			if (e.getKeyChar() == 'p') {
+			if (e.getKeyChar() == 'p'||e.getKeyChar() == 'P') {
 				showTitleScreen = false;
 				playing = true;
 			}
