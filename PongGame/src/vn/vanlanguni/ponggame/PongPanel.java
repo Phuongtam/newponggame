@@ -101,21 +101,21 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 
 			// move player 1
 			// Move up if after moving, paddle is not outside the screen
-			if (upPressed && playerOneY - paddleSpeed > 0) {
+			if (wPressed && playerOneY - paddleSpeed > 0) {
 				playerOneY -= paddleSpeed;
 			}
 			// Move down if after moving paddle is not outside the screen
-			if (downPressed && playerOneY + playerOneHeight + paddleSpeed < getHeight()) {
+			if (sPressed && playerOneY + playerOneHeight + paddleSpeed < getHeight()) {
 				playerOneY += paddleSpeed;
 			}
 
 			// move player 2
 			// Move up if after moving paddle is not outside the screen
-			if (wPressed && playerTwoY - paddleSpeed > 0) {
+			if (upPressed && playerTwoY - paddleSpeed > 0) {
 				playerTwoY -= paddleSpeed;
 			}
 			// Move down if after moving paddle is not outside the screen
-			if (sPressed && playerTwoY + playerTwoHeight + paddleSpeed < getHeight()) {
+			if (downPressed && playerTwoY + playerTwoHeight + paddleSpeed < getHeight()) {
 				playerTwoY += paddleSpeed;
 			}
 
@@ -263,15 +263,15 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 			// Draw the winner name
 			g.setFont(new Font(Font.DIALOG, Font.BOLD, 36));
 			if (playerOneScore > playerTwoScore) {
-				g.drawString("Player 1 Wins!", 165, 200);
+				g.drawString("Player 1 Wins!", 140, 200);
 			} else {
-				g.drawString("Player 2 Wins!", 165, 200);
+				g.drawString("Player 2 Wins!", 140, 200);
 			}
 
 			// Draw Restart message
 			g.setFont(new Font(Font.DIALOG, Font.BOLD, 18));
 			// TODO Draw a restart message
-			g.drawString("Press 'SpaceBar' to restart.", 135, 400);
+			g.drawString("Press 'SpaceBar' to restart.", 130, 400);
 		}
 	}
 
@@ -285,13 +285,13 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 				playing = true;
 			}
 		} else if (playing) {
-			if (e.getKeyCode() == KeyEvent.VK_W) {
+			if (e.getKeyCode() == KeyEvent.VK_UP) {
 				upPressed = true;
-			} else if (e.getKeyCode() == KeyEvent.VK_S) {
-				downPressed = true;
-			} else if (e.getKeyCode() == KeyEvent.VK_UP) {
-				wPressed = true;
 			} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+				downPressed = true;
+			} else if (e.getKeyCode() == KeyEvent.VK_W) {
+				wPressed = true;
+			} else if (e.getKeyCode() == KeyEvent.VK_S) {
 				sPressed = true;
 			}
 		} else if (gameOver && e.getKeyCode() == KeyEvent.VK_SPACE) {
@@ -307,13 +307,13 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	public void keyReleased(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_W) {
+		if (e.getKeyCode() == KeyEvent.VK_UP) {
 			upPressed = false;
-		} else if (e.getKeyCode() == KeyEvent.VK_S) {
-			downPressed = false;
-		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
-			wPressed = false;
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+			downPressed = false;
+		} else if (e.getKeyCode() == KeyEvent.VK_W) {
+			wPressed = false;
+		} else if (e.getKeyCode() == KeyEvent.VK_S) {
 			sPressed = false;
 		}
 	}
