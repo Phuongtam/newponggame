@@ -16,6 +16,7 @@
  *  Version: 0.5
  */
 package vn.vanlanguni.ponggame;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -24,6 +25,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -54,6 +56,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 	private int diameter = 20;
 	private int ballDeltaX = -1;
 	private int ballDeltaY = 3;
+	ImageIcon imaBall;
 
 	/** Player 1's paddle: position and size */
 	private int playerOneX = 0;
@@ -242,8 +245,10 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 																	// score
 
 			// draw the ball
-			g.setColor(Color.RED);
-			g.fillOval(ballX, ballY, diameter, diameter);
+			imaBall = new ImageIcon("ImageBall/bongda_1.jpg");
+			// g.setColor(Color.RED);
+			// g.fillOval(ballX, ballY, diameter, diameter);
+			g.drawImage(imaBall.getImage(), ballX, ballY, diameter, diameter, Color.BLACK, null);
 
 			// draw the paddles
 			g.fillRect(playerOneX, playerOneY, playerOneWidth, playerOneHeight);
@@ -254,7 +259,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 
 			// Draw scores
 			// TODO Set Blue color
-			
+
 			g.setFont(new Font(Font.DIALOG, Font.BOLD, 36));
 			g.setColor(Color.BLUE);
 			g.drawString(String.valueOf(playerOneScore), 100, 100);
@@ -280,7 +285,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 
 	public void keyPressed(KeyEvent e) {
 		if (showTitleScreen) {
-			if (e.getKeyChar() == 'p'||e.getKeyChar() == 'P') {
+			if (e.getKeyChar() == 'p' || e.getKeyChar() == 'P') {
 				showTitleScreen = false;
 				playing = true;
 			}
