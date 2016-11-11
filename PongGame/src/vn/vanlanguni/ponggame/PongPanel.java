@@ -239,7 +239,9 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 			// draw "goal lines" on each side
 			g.drawLine(playerOneRight, 0, playerOneRight, getHeight());
 			g.drawLine(playerTwoLeft, 0, playerTwoLeft, getHeight());
-
+			//background ion
+			imaBackGround = new ImageIcon("ImageBall/co-nhan-tao-2.jpg");
+			g.drawImage(imaBackGround.getImage(), 0, 0, 500, 500, Color.black, null);
 			// draw the scores
 			g.setFont(new Font(Font.DIALOG, Font.BOLD, 36));
 			g.setColor(Color.BLUE);
@@ -248,8 +250,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 			g.drawString(String.valueOf(playerTwoScore), 400, 100); // Player 2
 																	// score
 
-			imaBackGround = new ImageIcon("ImageBall/co-nhan-tao-2.jpg");
-			g.drawImage(imaBackGround.getImage(), 0, 0, 500, 500, Color.black, null);
+			
 			// draw the ball
 			imaBall = new ImageIcon("ImageBall/bongda_1.jpg");
 			// g.setColor(Color.RED);
