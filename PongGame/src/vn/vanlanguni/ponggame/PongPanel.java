@@ -43,6 +43,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 
 	/** Background. */
 	private Color backgroundColor = Color.BLACK;
+	ImageIcon imaBackGround;
 
 	/** State on the control keys. */
 	private boolean upPressed;
@@ -82,6 +83,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 	/** Construct a PongPanel. */
 	public PongPanel() {
 		setBackground(backgroundColor);
+		// setBackground(null);
 
 		// listen to key presses
 		setFocusable(true);
@@ -246,6 +248,8 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 			g.drawString(String.valueOf(playerTwoScore), 400, 100); // Player 2
 																	// score
 
+			imaBackGround = new ImageIcon("ImageBall/co-nhan-tao-2.jpg");
+			g.drawImage(imaBackGround.getImage(), 0, 0, 500, 500, Color.black, null);
 			// draw the ball
 			imaBall = new ImageIcon("ImageBall/bongda_1.jpg");
 			// g.setColor(Color.RED);
@@ -254,12 +258,16 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 
 			// draw the paddles
 			imaPaddle1 = new ImageIcon("ImageBall/paddle1.png");
-			//g.fillRect(playerOneX, playerOneY, playerOneWidth, playerOneHeight);
-			g.drawImage(imaPaddle1.getImage(),playerOneX, playerOneY, playerOneWidth, playerOneHeight,Color.BLACK, null );
-			
+			// g.fillRect(playerOneX, playerOneY, playerOneWidth,
+			// playerOneHeight);
+			g.drawImage(imaPaddle1.getImage(), playerOneX, playerOneY, playerOneWidth, playerOneHeight, Color.BLACK,
+					null);
+
 			imaPaddle2 = new ImageIcon("ImageBall/paddle2.png");
-			//g.fillRect(playerTwoX, playerTwoY, playerTwoWidth, playerTwoHeight);
-			g.drawImage(imaPaddle2.getImage(),playerTwoX, playerTwoY, playerTwoWidth, playerTwoHeight, Color.BLACK, null);
+			// g.fillRect(playerTwoX, playerTwoY, playerTwoWidth,
+			// playerTwoHeight);
+			g.drawImage(imaPaddle2.getImage(), playerTwoX, playerTwoY, playerTwoWidth, playerTwoHeight, Color.BLACK,
+					null);
 		} else if (gameOver) {
 
 			/* Show End game screen with winner name and score */
