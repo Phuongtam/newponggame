@@ -63,12 +63,14 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 	private int playerOneY = 250;
 	private int playerOneWidth = 10;
 	private int playerOneHeight = 50;
+	ImageIcon imaPaddle1;
 
 	/** Player 2's paddle: position and size */
 	private int playerTwoX = 484;
 	private int playerTwoY = 250;
 	private int playerTwoWidth = 10;
 	private int playerTwoHeight = 50;
+	ImageIcon imaPaddle2;
 
 	/** Speed of the paddle - How fast the paddle move. */
 	private int paddleSpeed = 5;
@@ -251,8 +253,13 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 			g.drawImage(imaBall.getImage(), ballX, ballY, diameter, diameter, Color.BLACK, null);
 
 			// draw the paddles
-			g.fillRect(playerOneX, playerOneY, playerOneWidth, playerOneHeight);
-			g.fillRect(playerTwoX, playerTwoY, playerTwoWidth, playerTwoHeight);
+			imaPaddle1 = new ImageIcon("ImageBall/paddle1.png");
+			//g.fillRect(playerOneX, playerOneY, playerOneWidth, playerOneHeight);
+			g.drawImage(imaPaddle1.getImage(),playerOneX, playerOneY, playerOneWidth, playerOneHeight,Color.BLACK, null );
+			
+			imaPaddle2 = new ImageIcon("ImageBall/paddle2.png");
+			//g.fillRect(playerTwoX, playerTwoY, playerTwoWidth, playerTwoHeight);
+			g.drawImage(imaPaddle2.getImage(),playerTwoX, playerTwoY, playerTwoWidth, playerTwoHeight, Color.BLACK, null);
 		} else if (gameOver) {
 
 			/* Show End game screen with winner name and score */
