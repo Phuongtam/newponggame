@@ -43,7 +43,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 
 	/** Background. */
 	private Color backgroundColor = Color.BLACK;
-	ImageIcon imaBackGround;
+	ImageIcon imaBackGround,imaStart;
 
 	/** State on the control keys. */
 	private boolean upPressed;
@@ -82,8 +82,8 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 
 	/** Construct a PongPanel. */
 	public PongPanel() {
-		setBackground(backgroundColor);
-		// setBackground(null);
+		//setBackground(backgroundColor);
+		//setLayout(null);
 
 		// listen to key presses
 		setFocusable(true);
@@ -132,7 +132,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 			 * was out yet
 			 */
 
-			// dieu chinh goc bat cua bong
+		
 
 			int nextBallLeft = ballX + ballDeltaX;
 			int nextBallRight = ballX + diameter + ballDeltaX;
@@ -158,7 +158,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 				}
 				
 			
-
+			// dieu chinh goc bat cua bong
 			// will the ball go off the left side?
 			if (nextBallLeft < playerOneRight) {
 				// is it going to miss the paddle?
@@ -257,7 +257,9 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 		super.paintComponent(g);
 
 		if (showTitleScreen) {
-
+			//background screen
+			imaStart = new ImageIcon("ImageBall/anhnenstart.jpg");
+			g.drawImage(imaStart.getImage(), 0, 0, getWidth(), getHeight(), null);
 			/* Show welcome screen */
 
 			// Draw game title and start message
