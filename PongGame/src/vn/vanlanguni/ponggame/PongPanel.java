@@ -25,9 +25,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.Timer;
+
 
 /**
  * 
@@ -44,6 +47,8 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 	/** Background. */
 	private Color backgroundColor = Color.BLACK;
 	ImageIcon imaBackGround,imaStart;
+	JRadioButton radBall1,radBall2;
+	
 
 	/** State on the control keys. */
 	private boolean upPressed;
@@ -57,7 +62,9 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 	private int diameter = 20;
 	private int ballDeltaX = -1; // -1
 	private int ballDeltaY = 3; // 3
-	ImageIcon imaBall;
+	ImageIcon imaBall1,imaBall2;
+	ButtonGroup btngBall;
+	JPanel pnlSelect ;
 
 	/** Player 1's paddle: position and size */
 	private int playerOneX = 0;
@@ -82,9 +89,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 
 	/** Construct a PongPanel. */
 	public PongPanel() {
-		//setBackground(backgroundColor);
-		//setLayout(null);
-
+		setBackground(backgroundColor);
 		// listen to key presses
 		setFocusable(true);
 		addKeyListener(this);
@@ -92,6 +97,31 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 		// call step() 60 fps
 		Timer timer = new Timer(1000 / 60, this);
 		timer.start();
+		
+		
+	}
+	public void BallSelect(){
+		//add RadioButton for Screen
+				radBall1 = new JRadioButton();
+				radBall2 = new JRadioButton();
+				btngBall = new ButtonGroup();
+				pnlSelect = new JPanel();
+				
+				pnlSelect.setLayout(null);
+				pnlSelect.setOpaque(false);
+				btngBall.add(radBall1);
+				btngBall.add(radBall2);
+
+				pnlSelect.add(radBall1);
+				pnlSelect.add(radBall2);
+		
+				radBall1.setOpaque(true);
+				radBall1.setBounds(0, 0, 20, 20);
+				radBall2.setBounds(60, 0, 20, 20);
+		
+				this.add(pnlSelect);
+				pnlSelect.setBounds(200, 280, 100, 25);
+				//pnlSelect.setVisible(true);
 	}
 
 	/** Implement actionPerformed */
@@ -217,7 +247,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 				} else {
 					if(ballDeltaY==-3){
 						if (nextBallRight <= playerTwoTop + 15||nextBallRight >= playerTwoBottom - 15) {
-							ballDeltaY = -2;
+							ballDeltaY = -5;
 						}else if (nextBallRight < playerTwoTop + 30) {
 							ballDeltaY=-4;
 						}else if (nextBallRight < playerTwoTop + 45) {
@@ -226,7 +256,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 							
 					}else{
 						if (nextBallRight <= playerTwoTop + 15||nextBallRight >= playerTwoBottom - 15) {
-							ballDeltaY = 2;
+							ballDeltaY = 5;
 						}else if (nextBallRight < playerTwoTop + 30) {
 							ballDeltaY=4;
 						}else if (nextBallRight < playerTwoTop + 45) {
@@ -257,9 +287,19 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 		super.paintComponent(g);
 
 		if (showTitleScreen) {
+			//select ball
+			BallSelect();
+			pnlSelect.setVisible(true);
+			
 			//background screen
 			imaStart = new ImageIcon("ImageBall/anhnenstart.jpg");
 			g.drawImage(imaStart.getImage(), 0, 0, getWidth(), getHeight(), null);
+			
+			//List Ball
+			imaBall1 = new ImageIcon("ImageBall/ball.png");
+			imaBall2 = new ImageIcon("ImageBall/ball2.png");
+			g.drawImage(imaBall1.getImage(), 190, 230, 40,40, null);
+			g.drawImage(imaBall2.getImage(), 250, 230, 40,40, null);	
 			/* Show welcome screen */
 
 			// Draw game title and start message
@@ -271,6 +311,8 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 			g.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
 			g.drawString("Press 'P' to play.", 140, 400);
 		} else if (playing) {
+			//disable select ball
+			pnlSelect.setVisible(false);
 
 			/* Game is playing */
 
@@ -299,10 +341,10 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 																	// score
 
 			// draw the ball
-			imaBall = new ImageIcon("ImageBall/ball.png");
+			
 			// g.setColor(Color.RED);
 			// g.fillOval(ballX, ballY, diameter, diameter);
-			g.drawImage(imaBall.getImage(), ballX, ballY, diameter, diameter, null);
+			g.drawImage(imaBall1.getImage(), ballX, ballY, diameter, diameter, null);
 
 			// draw the paddles
 			imaPaddle1 = new ImageIcon("ImageBall/paddle1.png");
@@ -317,7 +359,8 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 			g.drawImage(imaPaddle2.getImage(), playerTwoX, playerTwoY, playerTwoWidth, playerTwoHeight, Color.BLACK,
 					null);
 		} else if (gameOver) {
-
+			//disable select ball
+			pnlSelect.setVisible(false);
 			/* Show End game screen with winner name and score */
 
 			// Draw scores
@@ -350,7 +393,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 		if (showTitleScreen) {
 			if (e.getKeyChar() == 'p' || e.getKeyChar() == 'P') {
 				showTitleScreen = false;
-				playing = true;
+				playing = true;	
 			}
 		} else if (playing) {
 			if (e.getKeyCode() == KeyEvent.VK_UP) {
