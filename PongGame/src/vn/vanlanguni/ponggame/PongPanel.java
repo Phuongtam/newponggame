@@ -151,18 +151,13 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 			float playerTwoBottom = playerTwoY + playerTwoHeight;
 
 			// ball bounces off top and bottom of screen
-			
-			
-			if (nextBallTop < 0 || nextBallBottom > getHeight()) {
 				if(nextBallTop<0){
 					ballDeltaY=3;
-					//ballDeltaY *= -1;
-				}if(nextBallBottom>475){
+				}else if(nextBallBottom>475){
 					ballDeltaY=-3;
-					//ballDeltaY *= 1;
 				}
 				
-			}
+			
 
 			// will the ball go off the left side?
 			if (nextBallLeft < playerOneRight) {
@@ -178,15 +173,28 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 					ballX = 250;
 					ballY = 250;
 				} else {
-					if (nextBallLeft <= playerOneTop + 15 || nextBallLeft >= playerOneBottom - 15) {
-						ballDeltaY = 2;
-					}else if (nextBallLeft < playerOneTop + 30) {
-						ballDeltaY=4;
-					}else if (nextBallLeft < playerOneTop + 45) {
-						ballDeltaY=3;
+					if(ballDeltaY==-3){
+						if (nextBallLeft <= playerOneTop + 15 ) {
+							ballDeltaY = -2;
+						}else if (nextBallLeft < playerOneTop + 30) {
+							ballDeltaY=-4;
+						}else if (nextBallLeft < playerOneTop + 45) {
+							ballDeltaY=-3;
+						}else if (nextBallLeft >= playerOneBottom - 15){
+							ballDeltaY = -2;
+						}
+					}else{
+						if (nextBallLeft <= playerOneTop + 15 ) {
+							ballDeltaY = 2;
+						}else if (nextBallLeft < playerOneTop + 30) {
+							ballDeltaY=4;
+						}else if (nextBallLeft < playerOneTop + 45) {
+							ballDeltaY=3;
+						}else if (nextBallLeft >= playerOneBottom - 15){
+							ballDeltaY = 2;
+						}
 					}
 					
-					//ballDeltaY=3;
 					// If the ball hitting the paddle, it will bounce back
 					// FIXME Something wrong here
 					ballDeltaX *= -1;
@@ -207,11 +215,30 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 					ballX = 250;
 					ballY = 250;
 				} else {
+					if(ballDeltaY==-3){
+						if (nextBallRight <= playerTwoTop + 15||nextBallRight >= playerTwoBottom - 15) {
+							ballDeltaY = -2;
+						}else if (nextBallRight < playerTwoTop + 30) {
+							ballDeltaY=-4;
+						}else if (nextBallRight < playerTwoTop + 45) {
+							ballDeltaY=-3;
+						}
+							
+					}else{
+						if (nextBallRight <= playerTwoTop + 15||nextBallRight >= playerTwoBottom - 15) {
+							ballDeltaY = 2;
+						}else if (nextBallRight < playerTwoTop + 30) {
+							ballDeltaY=4;
+						}else if (nextBallRight < playerTwoTop + 45) {
+							ballDeltaY=3;
+						}
+							
+					}
+					
 
 					// If the ball hitting the paddle, it will bounce back
 					// FIXME Something wrong here
 					ballDeltaX *= -1;
-					// ballDeltaY *= -1;
 				}
 			}
 
