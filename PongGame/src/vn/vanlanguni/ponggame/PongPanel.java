@@ -55,22 +55,22 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 	private int ballX = 250;
 	private int ballY = 250;
 	private int diameter = 20;
-	private int ballDeltaX = -1;
-	private int ballDeltaY = 3;
+	private int ballDeltaX = -1; // -1
+	private int ballDeltaY = 3; // 3
 	ImageIcon imaBall;
 
 	/** Player 1's paddle: position and size */
 	private int playerOneX = 0;
 	private int playerOneY = 250;
 	private int playerOneWidth = 10;
-	private int playerOneHeight = 50;
+	private int playerOneHeight = 60;
 	ImageIcon imaPaddle1;
 
 	/** Player 2's paddle: position and size */
 	private int playerTwoX = 484;
 	private int playerTwoY = 250;
 	private int playerTwoWidth = 10;
-	private int playerTwoHeight = 50;
+	private int playerTwoHeight = 60;
 	ImageIcon imaPaddle2;
 
 	/** Speed of the paddle - How fast the paddle move. */
@@ -131,6 +131,9 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 			 * Right, Top, Bottom of the ball used to determine whether the ball
 			 * was out yet
 			 */
+
+			// dieu chinh goc bat cua bong
+
 			int nextBallLeft = ballX + ballDeltaX;
 			int nextBallRight = ballX + diameter + ballDeltaX;
 			// FIXME Something not quite right here
@@ -148,15 +151,23 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 			float playerTwoBottom = playerTwoY + playerTwoHeight;
 
 			// ball bounces off top and bottom of screen
+			
+			
 			if (nextBallTop < 0 || nextBallBottom > getHeight()) {
-				ballDeltaY *= -1;
+				if(nextBallTop<0){
+					ballDeltaY=3;
+					//ballDeltaY *= -1;
+				}if(nextBallBottom>475){
+					ballDeltaY=-3;
+					//ballDeltaY *= 1;
+				}
+				
 			}
 
 			// will the ball go off the left side?
 			if (nextBallLeft < playerOneRight) {
 				// is it going to miss the paddle?
 				if (nextBallTop > playerOneBottom || nextBallBottom < playerOneTop) {
-
 					playerTwoScore++;
 
 					// Player 2 Win, restart the game
@@ -167,6 +178,15 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 					ballX = 250;
 					ballY = 250;
 				} else {
+					if (nextBallLeft <= playerOneTop + 15 || nextBallLeft >= playerOneBottom - 15) {
+						ballDeltaY = 2;
+					}else if (nextBallLeft < playerOneTop + 30) {
+						ballDeltaY=4;
+					}else if (nextBallLeft < playerOneTop + 45) {
+						ballDeltaY=3;
+					}
+					
+					//ballDeltaY=3;
 					// If the ball hitting the paddle, it will bounce back
 					// FIXME Something wrong here
 					ballDeltaX *= -1;
@@ -177,7 +197,6 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 			if (nextBallRight > playerTwoLeft) {
 				// is it going to miss the paddle?
 				if (nextBallTop > playerTwoBottom || nextBallBottom < playerTwoTop) {
-
 					playerOneScore++;
 
 					// Player 1 Win, restart the game
@@ -192,7 +211,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 					// If the ball hitting the paddle, it will bounce back
 					// FIXME Something wrong here
 					ballDeltaX *= -1;
-					ballDeltaY *= -1;
+					// ballDeltaY *= -1;
 				}
 			}
 
@@ -239,7 +258,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 			// draw "goal lines" on each side
 			g.drawLine(playerOneRight, 0, playerOneRight, getHeight());
 			g.drawLine(playerTwoLeft, 0, playerTwoLeft, getHeight());
-			//background ion
+			// background ion
 			imaBackGround = new ImageIcon("ImageBall/co-nhan-tao-2.jpg");
 			g.drawImage(imaBackGround.getImage(), 0, 0, 500, 500, Color.black, null);
 			// draw the scores
@@ -250,12 +269,11 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 			g.drawString(String.valueOf(playerTwoScore), 400, 100); // Player 2
 																	// score
 
-			
 			// draw the ball
-			imaBall = new ImageIcon("ImageBall/bongda_1.jpg");
+			imaBall = new ImageIcon("ImageBall/ball.png");
 			// g.setColor(Color.RED);
 			// g.fillOval(ballX, ballY, diameter, diameter);
-			g.drawImage(imaBall.getImage(), ballX, ballY, diameter, diameter, Color.BLACK, null);
+			g.drawImage(imaBall.getImage(), ballX, ballY, diameter, diameter, null);
 
 			// draw the paddles
 			imaPaddle1 = new ImageIcon("ImageBall/paddle1.png");
