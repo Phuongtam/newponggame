@@ -190,7 +190,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 					ballX = 250;
 					ballY = 250;
 				} else {
-					// dieu chinh goc bat cua bong
+					// dieu chinh goc bat cua bong paddle 1
 					if (ballDeltaY == -3) {
 						if (nextBallLeft <= playerOneTop + 15 || nextBallLeft >= playerOneBottom - 15) {
 							ballDeltaY = -5;
@@ -229,7 +229,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
 					ballX = 250;
 					ballY = 250;
 				} else {
-					// dieu chinh goc bat cua bong
+					// dieu chinh goc bat cua bong paddle 2
 					if (ballDeltaY == -3) {
 						if (nextBallRight <= playerTwoTop + 15 || nextBallRight >= playerTwoBottom - 15) {
 							ballDeltaY = -5;
