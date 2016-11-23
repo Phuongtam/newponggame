@@ -111,17 +111,16 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener, Mo
 	private int playerTwoScore;
 
 	//
-	private soundlayer startgame, overgame, playinggame,wingame,paddle;
+	private soundlayer startgame, overgame, playinggame, wingame, paddle;
 
 	/** Construct a PongPanel. */
 	public PongPanel() {
 
-		startgame = new soundlayer(new File("C:\\Users\\Ngoc Lam\\git\\newponggame\\PongGame\\nhac\\da.wav"));
-		playinggame = new soundlayer(
-				new File("C:\\Users\\Ngoc Lam\\git\\newponggame\\PongGame\\nhac\\boi.wav"));
+		startgame = new soundlayer(new File("/newPongGame/nhac/da.wav"));
+		playinggame = new soundlayer(new File("/newPongGame/nhac/boi.wav"));
 		setBackground(backgroundColor);
-		wingame = new soundlayer(new File("C:\\Users\\Ngoc Lam\\git\\newponggame\\PongGame\\nhac\\changkhothuychung.wav"));
-		paddle = new soundlayer(new File("C:\\Users\\Ngoc Lam\\git\\newponggame\\PongGame\\nhac\\cartoon003.wav"));
+		wingame = new soundlayer(new File("/newPongGame/nhac/changkhothuychung.wav"));
+		paddle = new soundlayer(new File("/newPongGame/nhac/cartoon003.wav"));
 		// listen to key presses
 		setFocusable(true);
 		addKeyListener(this);
@@ -161,7 +160,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener, Mo
 
 			/* Playing mode */
 			startgame.stop();
-			
+
 			// move player 1
 			// Move up if after moving, paddle is not outside the screen
 			if (wPressed && playerOneY - paddleSpeed > 0) {
@@ -223,7 +222,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener, Mo
 						gameOver = true;
 						playinggame.stop();
 						wingame.playMusic();
-						
+
 					}
 					ballX = 250;
 					ballY = 250;
@@ -250,6 +249,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener, Mo
 					// If the ball hitting the paddle, it will bounce back
 					// FIXME Something wrong here
 					ballDeltaX *= -1;
+					paddle.play();
 				}
 			}
 
@@ -261,7 +261,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener, Mo
 
 					// Player 1 Win, restart the game
 					if (playerOneScore == 3) {
-						
+
 						playing = false;
 						gameOver = true;
 						playinggame.stop();
@@ -294,6 +294,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener, Mo
 					// If the ball hitting the paddle, it will bounce back
 					// FIXME Something wrong here
 					ballDeltaX *= -1;
+					paddle.play();
 				}
 			}
 
@@ -423,7 +424,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener, Mo
 			g.drawImage(imaPaddle2.getImage(), playerTwoX, playerTwoY, playerTwoWidth, playerTwoHeight, Color.BLACK,
 					null);
 		} else if (gameOver) {
-			
+
 			playinggame.stop();
 			// disable select ball
 			pnlSelect.setVisible(false);
@@ -454,7 +455,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener, Mo
 			g.setFont(new Font(Font.DIALOG, Font.BOLD, 18));
 			// TODO Draw a restart message
 			g.drawString("Press 'SpaceBar' to restart.", 130, 400);
-		
+
 		}
 
 	}
@@ -480,9 +481,9 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener, Mo
 			} else if (e.getKeyCode() == KeyEvent.VK_S) {
 				sPressed = true;
 			}
-		
+
 		} else if (gameOver && e.getKeyCode() == KeyEvent.VK_SPACE) {
-			//playinggame.stop();
+			// playinggame.stop();
 			startgame.playMusic();
 			gameOver = false;
 			showTitleScreen = true;
