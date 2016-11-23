@@ -130,7 +130,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener, Mo
 
 		// call step() 60 fps
 		startgame.playMusic();
-		Timer timer = new Timer(500 / 60, this);
+		Timer timer = new Timer(1000 / 60, this);
 		timer.start();
 	}
 
