@@ -50,6 +50,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener, Mo
 	private boolean showTitleScreen = true;
 	private boolean playing;
 	private boolean gameOver;
+	sound sound1 = new sound();
 
 	/** Background. */
 	private Color backgroundColor = Color.BLACK;
@@ -237,6 +238,8 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener, Mo
 					// If the ball hitting the paddle, it will bounce back
 					// FIXME Something wrong here
 					ballDeltaX *= -1;
+					sound1.play("nhac/ahem_x.wav");
+					
 				}
 			}
 
@@ -278,6 +281,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener, Mo
 					// If the ball hitting the paddle, it will bounce back
 					// FIXME Something wrong here
 					ballDeltaX *= -1;
+					sound1.play("nhac/ahem_x.wav");
 				}
 			}
 
