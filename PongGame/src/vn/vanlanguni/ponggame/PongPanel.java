@@ -294,7 +294,8 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener, Mo
 	public void paintComponent(Graphics g) {
 
 		super.paintComponent(g);
-
+		add(lblUser1);
+		add(lblUser2);
 		if (showTitleScreen) {
 			pnlSelect.setLayout(null);
 			pnlSelect.setOpaque(false);
@@ -317,14 +318,14 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener, Mo
 			g.drawImage(imaStart.getImage(), 0, 0, getWidth(), getHeight(), null);
 
 			// draw button start and setting
-			add(btnSetting);
-			btnSetting.setBorderPainted(false);
-			btnSetting.setContentAreaFilled(false);
-			btnSetting.setBounds(450, 10, 40, 40);
-			int x0=450,y0=10,w0=40,h0=40;
-		
+			// add(btnSetting);
+			// btnSetting.setBorderPainted(false);
+			// btnSetting.setContentAreaFilled(false);
+			// btnSetting.setBounds(450, 10, 40, 40);
+			int x0 = 450, y0 = 10, w0 = 40, h0 = 40;
+
 			rect = new Rectangle(x, y, w, h);
-			rect3 = new Rectangle(x0, y0, w0, h0);
+			// rect3 = new Rectangle(x0, y0, w0, h0);
 			if (hover) {
 				if (pressed) {
 					g.drawImage(iconButton.getImage(), x, y, x + w, y + h, 0, 214, 371, 214 + 106, null);
@@ -342,8 +343,8 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener, Mo
 			// draw Username
 			g.drawString("Username 1: ", 180, 150);
 			g.drawString("Username 2: ", 180, 180);
-			add(lblUser1);
-			add(lblUser2);
+			lblUser1.setBounds(280, 135, 200, 20);
+			lblUser2.setBounds(280, 165, 200, 20);
 
 			// draw Balllist
 			imaBall1 = new ImageIcon("ImageBall/ball.png");
@@ -383,13 +384,15 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener, Mo
 			g.drawLine(playerOneRight, 0, playerOneRight, getHeight());
 			g.drawLine(playerTwoLeft, 0, playerTwoLeft, getHeight());
 
-			// draw the scores
+			// draw the scores and username
 			g.setFont(new Font(Font.DIALOG, Font.BOLD, 36));
 			g.setColor(Color.GREEN);
 			g.drawString(String.valueOf(playerOneScore), 100, 100); // Player 1
 																	// score
 			g.drawString(String.valueOf(playerTwoScore), 400, 100); // Player 2
 																	// score
+			lblUser1.setBounds(30, 10, 100, 30);// username1
+			lblUser2.setBounds(420, 10, 100, 30);// username2
 
 			// draw the ball
 			g.drawImage(imaBall.getImage(), ballX, ballY, diameter, diameter, null);
@@ -479,40 +482,39 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener, Mo
 	}
 
 	public void Setting() {
-	//	if (rect.contains(e.getPoint())) {
-			SecondWindow w = new SecondWindow();
-			w.setLocationRelativeTo(PongPanel.this);
-			w.setVisible(true);
-			Settings s = w.getSetings();
+		// if (rect.contains(e.getPoint())) {
+		SecondWindow w = new SecondWindow();
+		w.setLocationRelativeTo(PongPanel.this);
+		w.setVisible(true);
+		Settings s = w.getSetings();
 
-			// Stop and wait for user input
+		// Stop and wait for user input
 
-			if (w.dialogResult == MyDialogResult.YES) {
-				lblUser1 = new JLabel(s.getUserName1());
-				lblUser2 = new JLabel(s.getUserName2());
+		if (w.dialogResult == MyDialogResult.YES) {
+			lblUser1 = new JLabel(s.getUserName1());
+			lblUser2 = new JLabel(s.getUserName2());
 
-				lblUser1.setForeground(Color.BLUE);
-				lblUser2.setForeground(Color.BLUE);
+			lblUser1.setForeground(Color.BLUE);
+			lblUser2.setForeground(Color.BLUE);
 
-				lblUser1.setFont(new Font("Tahoma", Font.BOLD, 15));
-				lblUser2.setFont(new Font("Tahoma", Font.BOLD, 15));
+			lblUser1.setFont(new Font("Tahoma", Font.BOLD, 15));
+			lblUser2.setFont(new Font("Tahoma", Font.BOLD, 15));
 
-				lblUser1.setBounds(280, 135, 200, 20);
-				lblUser2.setBounds(280, 165, 200, 20);
-
-			} else {
-				System.out.println("User chose to cancel");
-			}
+		} else {
+			System.out.println("User chose to cancel");
 		}
-//	}
+	}
+	// }
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		if (rect.contains(e.getPoint())) {
 			Setting();
+			showTitleScreen = false;
+			playing = true;
 		}
-	
+
 	}
 
 	@Override
@@ -560,8 +562,8 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener, Mo
 		// TODO Auto-generated method stub
 		// System.out.format("x=%d - y=%d", e.getX(), e.getY());
 		if (rect.contains(e.getX(), e.getY())) {
-			//iconSetting = new ImageIcon("imageBall/iconSetting2.png");
-			//btnSetting.setIcon(iconSetting);
+			// iconSetting = new ImageIcon("imageBall/iconSetting2.png");
+			// btnSetting.setIcon(iconSetting);
 			buttonColor = Color.RED;
 			hover = true;
 			setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
